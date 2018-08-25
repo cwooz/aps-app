@@ -1,13 +1,35 @@
 import React, { Component } from "react";
 import "./App.css";
-import Typography from "@material-ui/core/Typography";
+import NavBar from "./components/NavBar";
+
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+// tree-shaking enabled
+import {
+  List,
+  ListItem,
+  ListItemText,
+  createMuiTheme,
+  MuiThemeProvider
+} from "@material-ui/core";
+import { ListItemSecondaryAction, IconButton } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
+
+import { teal } from "@material-ui/core/colors";
+
+// import Typography from "@material-ui/core/Typography";
+// import Toolbar from "@material-ui/core/Toolbar";
+// import IconButton from "@material-ui/core/IconButton";
+// import MenuIcon from "@material-ui/icons/Menu";
 
 class App extends Component {
   state = {
-    items: [],
+    items: [
+      { id: 1, title: "milk" },
+      { id: 2, title: "eggs" },
+      { id: 3, title: "hot-sauce" }
+    ],
     title: ""
   };
 
@@ -32,29 +54,61 @@ class App extends Component {
     }
   };
 
+  handleDelete = id =>
+    this.setState(({ exercises }) => ({
+      exercises: exercises.filter(ex => ex.id !== id)
+    }));
+
   render() {
-    const { title } = this.state;
+    const { title, items } = this.state;
+
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          light: teal[200], // same as '#FFCC80'
+          main: "#1de9b6", // same as orange[600]
+          dark: "#14a37f",
+          contrastText: "rgb(0,0,0)"
+        }
+      }
+    });
 
     return (
-      <div className="App">
-        <Paper>
-          <Typography variant="display1" align="center" gutterBottom>
-            <h2>APS App</h2>
-          </Typography>
-          <form onSubmit={this.handleCreate}>
-            <TextField
-              name="title"
-              label="Item"
-              value={title}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <Button type="submit" color="primary" variant="raised">
-              Create
-            </Button>
-          </form>
-        </Paper>
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div className="App">
+          <NavBar />
+
+          <Paper>
+            <form onSubmit={this.handleCreate}>
+              <TextField
+                name="title"
+                label="Item"
+                value={title}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <Button type="submit" color="primary" variant="raised">
+                Create
+              </Button>
+            </form>
+            <List>
+              {items.map(({ id, title }) => (
+                <ListItem key={id}>
+                  <ListItemText primary={title} />
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      color="primary"
+                      onClick={() => this.handleDelete(id)}
+                    >
+                      <Delete />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
