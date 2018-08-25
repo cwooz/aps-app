@@ -11,14 +11,17 @@ import {
   ListItem,
   ListItemText,
   createMuiTheme,
-  MuiThemeProvider
+  MuiThemeProvider,
+  Switch,
+  FormGroup,
+  FormControlLabel
 } from "@material-ui/core";
 import { ListItemSecondaryAction, IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 
 import { teal } from "@material-ui/core/colors";
 
-// import Typography from "@material-ui/core/Typography";
+import Typography from "@material-ui/core/Typography";
 // import Toolbar from "@material-ui/core/Toolbar";
 // import IconButton from "@material-ui/core/IconButton";
 // import MenuIcon from "@material-ui/icons/Menu";
@@ -30,7 +33,9 @@ class App extends Component {
       { id: 2, title: "eggs" },
       { id: 3, title: "hot-sauce" }
     ],
-    title: ""
+    title: "",
+    checkedA: true,
+    checkedB: true
   };
 
   handleChange = ({ target: { name, value } }) =>
@@ -59,25 +64,38 @@ class App extends Component {
       itmes: itmes.filter(ex => ex.id !== id)
     }));
 
+  handleToggle = name => event => {
+    this.setState({ [name]: event.target.checked });
+  };
+
   render() {
     const { title, items } = this.state;
 
     const theme = createMuiTheme({
       palette: {
         primary: {
-          light: teal[200], // same as '#FFCC80'
-          main: "#1de9b6", // same as orange[600]
+          light: teal[200],
+          main: "#1de9b6",
           dark: "#14a37f",
           contrastText: "rgb(0,0,0)"
         }
       }
     });
 
+    const style = {};
+
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <NavBar />
-
+          <Typography
+            variant="display1"
+            align="center"
+            gutterBottom
+            style={{ marginTop: "20px", color: "white" }}
+          >
+            Need To Buy
+          </Typography>
           <Paper>
             <form onSubmit={this.handleCreate}>
               <TextField
@@ -87,7 +105,12 @@ class App extends Component {
                 onChange={this.handleChange}
                 margin="normal"
               />
-              <Button type="submit" color="primary" variant="raised">
+              <Button
+                type="submit"
+                color="primary"
+                variant="raised"
+                style={{ style }}
+              >
                 Create
               </Button>
             </form>
@@ -95,6 +118,54 @@ class App extends Component {
               {items.map(({ id, title }) => (
                 <ListItem key={id}>
                   <ListItemText primary={title} />
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={this.state.checkedB}
+                        onChange={this.handleToggle("checkedB")}
+                        value="checkedB"
+                        color="primary"
+                      />
+                    }
+                    label="Toggle Cart"
+                  />
+                  <ListItemSecondaryAction>
+                    <IconButton
+                      color="primary"
+                      onClick={() => this.handleDelete(id)}
+                    >
+                      <Delete />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+          <br />
+          <Typography
+            variant="display1"
+            align="center"
+            gutterBottom
+            style={{ marginTop: "20px", color: "white" }}
+          >
+            In My Cart
+          </Typography>
+          <Paper>
+            <List>
+              {items.map(({ id, title }) => (
+                <ListItem key={id}>
+                  <ListItemText primary={title} />
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        checked={this.state.checkedB}
+                        onChange={this.handleToggle("checkedB")}
+                        value="checkedB"
+                        color="primary"
+                      />
+                    }
+                    label="Toggle Cart"
+                  />
                   <ListItemSecondaryAction>
                     <IconButton
                       color="primary"

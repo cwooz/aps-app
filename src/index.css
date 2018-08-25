@@ -13,6 +13,10 @@ form {
   margin-top: 20px;
 }
 
+.MuiButtonBase-root-46 {
+  margin-left: 20px;
+}
+
 @media only screen and (max-width: 766px) {
   body {
     margin: 20px;
