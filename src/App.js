@@ -55,8 +55,8 @@ class App extends Component {
   };
 
   handleDelete = id =>
-    this.setState(({ exercises }) => ({
-      exercises: exercises.filter(ex => ex.id !== id)
+    this.setState(({ itmes }) => ({
+      itmes: itmes.filter(ex => ex.id !== id)
     }));
 
   render() {
