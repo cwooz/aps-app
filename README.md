@@ -10,4 +10,4 @@ APS-Integration App for Florida Blue on-boarding process, powered by [material-u
 import { React, MaterialUI, Styled-Components } from "dependencies";
 ```
 
-<img alt='Screen Shot' src="https://farm2.staticflickr.com/1866/44215618732_e719e067d5_o.jpg" max-width="600">
+<img alt='Screen Shot' src="https://farm2.staticflickr.com/1888/43358508575_f9d5fb4409_o.png" width="666">
