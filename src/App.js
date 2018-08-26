@@ -13,7 +13,6 @@ import {
   createMuiTheme,
   MuiThemeProvider,
   Switch,
-  FormGroup,
   FormControlLabel
 } from "@material-ui/core";
 import { ListItemSecondaryAction, IconButton } from "@material-ui/core";
