@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import Toggle from "./components/Toggle";
+import Page from "./components/Page";
 
+import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -20,13 +22,7 @@ import {
 } from "@material-ui/core";
 import { ListItemSecondaryAction, IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
-
 import { teal } from "@material-ui/core/colors";
-
-import Typography from "@material-ui/core/Typography";
-// import Toolbar from "@material-ui/core/Toolbar";
-// import IconButton from "@material-ui/core/IconButton";
-// import MenuIcon from "@material-ui/icons/Menu";
 
 class App extends Component {
   state = {
@@ -35,8 +31,8 @@ class App extends Component {
       { id: 2, title: "eggs" },
       { id: 3, title: "hot-sauce" }
     ],
+    items2: [],
     title: "",
-    title2: "",
     checkedA: true,
     checkedB: true
   };
@@ -160,23 +156,12 @@ class App extends Component {
             In My Cart
           </Typography>
           <Paper>
+            <br />
             <List>
               {items.map(({ id, title }) => (
                 <ListItem key={id}>
                   <Toggle />
-
                   <ListItemText primary={title} />
-                  {/* <FormControlLabel
-                    control={
-                      <Switch
-                        checked={this.state.checkedB}
-                        onChange={this.handleToggle("checkedB")}
-                        value="checkedB"
-                        color="primary"
-                      />
-                    }
-                    label="Toggle Cart"
-                  /> */}
                   <ListItemSecondaryAction>
                     <IconButton
                       color="primary"
@@ -188,6 +173,8 @@ class App extends Component {
                 </ListItem>
               ))}
             </List>
+            <br />
+            <Page />
           </Paper>
         </div>
       </MuiThemeProvider>
