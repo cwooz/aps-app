@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
+import Toggle from "./components/Toggle";
 
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
+
 // tree-shaking enabled
 import {
   List,
@@ -121,8 +124,10 @@ class App extends Component {
             <List>
               {items.map(({ id, title }) => (
                 <ListItem key={id}>
+                  <Toggle />
+
                   <ListItemText primary={title} />
-                  <FormControlLabel
+                  {/* <FormControlLabel
                     control={
                       <Switch
                         checked={this.state.checkedB}
@@ -132,7 +137,7 @@ class App extends Component {
                       />
                     }
                     label="Toggle Cart"
-                  />
+                  /> */}
                   <ListItemSecondaryAction>
                     <IconButton
                       color="primary"
