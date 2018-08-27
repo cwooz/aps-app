@@ -33,6 +33,7 @@ class App extends Component {
       { id: 3, title: "hot-sauce" }
     ],
     title: "",
+    title2: "",
     checkedA: true,
     checkedB: true
   };
@@ -59,13 +60,16 @@ class App extends Component {
   };
 
   handleDelete = id =>
-    this.setState(({ itmes }) => ({
-      itmes: itmes.filter(ex => ex.id !== id)
+    this.setState(({ items }) => ({
+      items: items.filter(ex => ex.id !== id)
     }));
 
+  // move item from 'need to buy' to 'in my cart' and back
   handleToggle = name => event => {
     this.setState({ [name]: event.target.checked });
   };
+
+  // if checkedB === true
 
   render() {
     const { title, items } = this.state;
@@ -87,6 +91,7 @@ class App extends Component {
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <NavBar />
+          {/* Top Component */}
           <Typography
             variant="display1"
             align="center"
@@ -141,6 +146,7 @@ class App extends Component {
             </List>
           </Paper>
           <br />
+          {/* Bottom Component */}
           <Typography
             variant="display1"
             align="center"
@@ -151,9 +157,9 @@ class App extends Component {
           </Typography>
           <Paper>
             <List>
-              {items.map(({ id, title }) => (
+              {items.map(({ id, title2 }) => (
                 <ListItem key={id}>
-                  <ListItemText primary={title} />
+                  <ListItemText primary={title2} />
                   <FormControlLabel
                     control={
                       <Switch
