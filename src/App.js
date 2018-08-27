@@ -6,7 +6,7 @@ import Toggle from "./components/Toggle";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 
 // tree-shaking enabled
 import {
@@ -14,9 +14,9 @@ import {
   ListItem,
   ListItemText,
   createMuiTheme,
-  MuiThemeProvider,
-  Switch,
-  FormControlLabel
+  MuiThemeProvider
+  // Switch,
+  // FormControlLabel
 } from "@material-ui/core";
 import { ListItemSecondaryAction, IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
@@ -68,10 +68,9 @@ class App extends Component {
     }));
 
   // move item from 'need to buy' to 'in my cart' and back
-  handleToggle = name => event => {
-    this.setState({ [name]: event.target.checked });
-  };
-
+  // handleToggle = name => event => {
+  //   this.setState({ [name]: event.target.checked });
+  // };
   // if checkedB === true
 
   render() {
@@ -162,10 +161,12 @@ class App extends Component {
           </Typography>
           <Paper>
             <List>
-              {items.map(({ id, title2 }) => (
+              {items.map(({ id, title }) => (
                 <ListItem key={id}>
-                  <ListItemText primary={title2} />
-                  <FormControlLabel
+                  <Toggle />
+
+                  <ListItemText primary={title} />
+                  {/* <FormControlLabel
                     control={
                       <Switch
                         checked={this.state.checkedB}
@@ -175,7 +176,7 @@ class App extends Component {
                       />
                     }
                     label="Toggle Cart"
-                  />
+                  /> */}
                   <ListItemSecondaryAction>
                     <IconButton
                       color="primary"

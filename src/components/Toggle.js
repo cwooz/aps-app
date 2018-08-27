@@ -14,10 +14,16 @@ class Toggle extends Component {
     }));
   }
 
+  // toggleItem() {
+  //   if (this.state.isToggleOn === "OUT") {
+  //     console.log("clicked");
+  //   }
+  // }
+
   render() {
     return (
       <button onClick={this.handleClick}>
-        {this.state.isToggleOn ? "ON" : "OFF"}
+        {this.state.isToggleOn ? "IN" : "OUT"}
       </button>
     );
   }
