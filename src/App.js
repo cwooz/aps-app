@@ -63,7 +63,7 @@ class App extends Component {
       items: items.filter(ex => ex.id !== id)
     }));
 
-  // move item from 'need to buy' to 'in my cart' and back
+  // move item from 'need to buy' to 'in my cart' and back (Change state of items)
   // handleToggle = name => event => {
   //   this.setState({ [name]: event.target.checked });
   // };
