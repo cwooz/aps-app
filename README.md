@@ -1,6 +1,6 @@
 # [APS-Integration-App](https://morning-cove-22376.herokuapp.com/)
 
-APS-Integration App for Florida Blue on-boarding process, powered by [material-ui](https://material-ui.com/).
+APS-Integration App, powered by [material-ui](https://material-ui.com/).
 
 ##### Try version `1.0.0-beta` using the following [link](https://morning-cove-22376.herokuapp.com/). Thanks!
 
